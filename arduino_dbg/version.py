@@ -9,7 +9,7 @@ DBG_VERSION = [0, 3, 0]
 DBG_VERSION_STR = '.'.join(map(str, DBG_VERSION))
 FULL_DBG_VERSION_STR = f'Arduino Debugger (adbg) version {DBG_VERSION_STR}'
 
-LICENSE = """Copyright 2022 Aaron Kimball
+LICENSE = """Copyright 2021-2024 Aaron Kimball
 
 Redistribution and use in source and binary forms, with or without modification, are
 permitted provided that the following conditions are met:
