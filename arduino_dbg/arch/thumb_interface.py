@@ -496,6 +496,8 @@ class ArmThumbArchInterface(arch.ArchInterface):
         return ARM_CAPABILITIES
 
     def memory_map(self):
+        # TODO(aaron): This map is accurate for Cortex M4 but IMXRT1060 ArmM7 has a more complex multi-segment mem map.
+
         if self._mem_map is not None:
             return self._mem_map
 
@@ -505,10 +507,10 @@ class ArmThumbArchInterface(arch.ArchInterface):
         physical_data_min = self.debugger.get_arch_conf("RAMSTART")
 
         data_size = self.debugger.get_arch_conf("RAMSIZE")
-        code_size = self.debugger.get_arch_conf("FLASHEND") + 1
+        code_size = self.debugger.get_arch_conf("FLASHEND") + 1 - (self.debugger.get_arch_conf("FLASHSTART") or 0)
 
         logical_code_min = self.debugger.get_arch_conf("TEXT_SEGMENT_MIN")
-        physical_code_min = 0
+        physical_code_min = self.debugger.get_arch_conf("FLASHSTART") or 0
 
         peripheral_min = self.debugger.get_arch_conf("PERIPHERAL_SEGMENT_MIN")
         peripheral_max = self.debugger.get_arch_conf("PERIPHERAL_SEGMENT_MAX")
