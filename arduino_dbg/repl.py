@@ -3,9 +3,13 @@
 import functools
 import os
 import os.path
-import readline
 import signal
 import traceback
+
+try:
+   import gnureadline as readline
+except ImportError:
+   import readline
 
 import arduino_dbg.debugger as dbg
 import arduino_dbg.dump as dump

@@ -8,11 +8,15 @@ Methods to tokenize command input, and print per-command help messages.
 import inspect
 import os
 import os.path
-import readline
 import shlex
 from sortedcontainers import SortedDict, SortedList
 import sys
 import traceback
+
+try:
+   import gnureadline as readline
+except ImportError:
+   import readline
 
 import arduino_dbg.term as term
 from arduino_dbg.term import MsgLevel
